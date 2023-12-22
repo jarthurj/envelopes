@@ -1,0 +1,11 @@
+{% extends './base.html' %}
+
+
+{% block content %}
+
+<form method="POST" action='{% url "register" %}' class="col-md-6 offset-md-3 my-5">
+
+  {{form.as_p}}
+  
+</form>
+{% endblock %}
