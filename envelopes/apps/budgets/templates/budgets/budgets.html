@@ -3,6 +3,28 @@
 {% block content %}
 {% load static %}
   <div class="d-flex align-items-center justify-content-center">
-    <a href="{% url 'create_budget' %}"><button type="button" class="btn btn-primary">CREATE BUDGET</button></a>
+    <div>
+      <table class="table">
+        <tr>
+          <th scope="col">Envelope Name</th>
+          <th scope="col">Envelope Current Amount</th>
+        </tr>
+      <tbody>
+      {% for b in budgets %}
+        <tr scope="row">
+          <form method="POST" action="{% url 'budget' %}">
+            {% csrf_token %}
+            <input type="hidden" name="b_id" value="{{b.id}}">
+            <td class="text-center"><button type="submit" class="btn btn-link">{{b.name}}{{b.id}}</a></button>
+            <td class="text-center">{{b.total}}</td>
+          </form>
+        </tr>
+      {% endfor %}
+      </tbody>  
+      </table>
+    </div>
   </div>
+    <div class="d-flex align-items-center justify-content-center">
+      <a href="{% url 'create_budget' %}"><button type="button" class="btn btn-primary">CREATE BUDGET</button></a>
+    </div>
 {% endblock %}
